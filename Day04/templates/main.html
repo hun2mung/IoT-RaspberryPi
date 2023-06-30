@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>LED</title>
+	</head>
+	<body>
+		<h1>led ON / OFF</h1>
+		<div>
+			<button onclick="led_on()">ON</button>
+		</div>
+		<div>
+			<button onclick="led_off()">OFF</button>
+		</div>
+		<div id="result"/>
+		<script>
+			function led_on(){
+				fetch("/led/on")
+				.then(response=>response.text())
+				.then(data=>{
+					console.log(data);
+					let result = document.querySelector("#result");
+					if(data=="ok"){
+						result.innerHTML = "<h1>running</h1>";
+					}else{
+						result.innerHTML = "<h1>error</h1>";
+					}
+				});
+			}
+
+			function led_off(){
+				fetch("/led/off")
+				.then(response=>response.text())
+				.then(data=>{
+					console.log(data);
+					let result = document.querySelector("#result");
+					if(data=="ok"){
+						result.innerHTML = "<h1>stopping</h1>";
+					}else{
+						result.innerHTML = "<h1>error</h1>";
+					}
+				});
+			
+		</script>
+	</body>
+</html>
+</DOCTYPE>
+
